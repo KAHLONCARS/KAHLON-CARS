@@ -165,7 +165,9 @@
     var qs = new URLSearchParams(location.search);
     var st = { cat: qs.get('cat') || '', brands: qs.get('brand') ? [qs.get('brand')] : [], max: +qs.get('max') || 0 };
     var bm2 = brands();
-    $f('f-brands').innerHTML = Object.keys(bm2).sort().map(function (b) { return '<label><input type="checkbox" value="' + esc(b) + '"' + (st.brands.indexOf(b) > -1 ? ' checked' : '') + '> ' + esc(b) + ' <small>' + bm2[b] + '</small></label>'; }).join('');
+    var BEN = {'אאודי':'Audi','ב.מ.וו':'BMW','דיפאל':'Deepal','הונדה':'Honda','טויוטה':'Toyota','יונדאי':'Hyundai','ימאהה':'Yamaha','מאזדה':'Mazda','ניסאן':'Nissan','סובארו':'Subaru','סוזוקי':'Suzuki','קיה':'Kia','רנו':'Renault','מרצדס':'Mercedes','פולקסווגן':'Volkswagen','סקודה':'Skoda','שברולט':'Chevrolet','פורד':'Ford','מיצובישי':'Mitsubishi','פיג׳ו':'Peugeot','סיטרואן':'Citroen','לקסוס':'Lexus','טסלה':'Tesla','BYD':'BYD','גילי':'Geely','MG':'MG','ג׳יפ':'Jeep','שבירולט':'Chevrolet'};
+    var isNew = function (c) { return /^\s*0/.test(String(c.hand || '')) || (c.km != null && c.km <= 1000); };
+    $f('f-brands').innerHTML = Object.keys(bm2).sort().map(function (b) { return '<label><input type="checkbox" value="' + esc(b) + '"' + (st.brands.indexOf(b) > -1 ? ' checked' : '') + '> ' + esc(b) + (BEN[b] ? ' <small class="en">' + BEN[b] + '</small>' : '') + '</label>'; }).join('');
     var prices = CARS.map(function (c) { return c.price || 0; });
     var pmax = Math.ceil(Math.max.apply(null, prices.concat([20000])) / 5000) * 5000;
     var maxR = $f('f-max'); maxR.max = pmax; maxR.value = st.max && st.max < pmax ? st.max : pmax;
@@ -180,12 +182,15 @@
       var list = CARS.filter(function (c) {
         if (st.cat && !hasCat(c, st.cat)) return false;
         if (bs.length && bs.indexOf(c.brand) < 0) return false;
+        var cond = (document.querySelector('#f-cond input:checked') || {}).value || '';
+        if (cond === 'new' && !isNew(c)) return false;
+        if (cond === 'used' && isNew(c)) return false;
         if (mx < pmax && (!c.price || c.price > mx)) return false;
         if (yr && c.year < yr) return false;
         if (km && (!c.km || c.km > km)) return false;
         if ($f('f-auto').checked && !isAuto(c)) return false;
         if ($f('f-fin').checked && !canFin(c)) return false;
-        if (q && (c.title + ' ' + (c.en || '') + ' ' + (c.brand || '')).toLowerCase().indexOf(q) < 0) return false;
+        if (q && (c.title + ' ' + (c.en || '') + ' ' + (c.brand || '') + ' ' + (BEN[c.brand] || '')).toLowerCase().indexOf(q) < 0) return false;
         return true;
       });
       var s = $f('sort').value;
@@ -205,7 +210,7 @@
     };
     pills.forEach(function (p) { p.addEventListener('click', function (e) { e.preventDefault(); st.cat = p.dataset.c; history.replaceState(null, '', p.getAttribute('href')); render(); }); });
     $f('filters').addEventListener('input', render); $f('filters').addEventListener('change', render); $f('sort').addEventListener('change', render);
-    $f('f-reset').addEventListener('click', function () { $f('q').value = ''; document.querySelectorAll('#f-brands input').forEach(function (i) { i.checked = false; }); maxR.value = pmax; $f('f-year').value = ''; $f('f-km').value = ''; $f('f-auto').checked = false; $f('f-fin').checked = false; st.cat = ''; render(); });
+    $f('f-reset').addEventListener('click', function () { $f('q').value = ''; document.querySelectorAll('#f-brands input').forEach(function (i) { i.checked = false; }); maxR.value = pmax; $f('f-year').value = ''; $f('f-km').value = ''; $f('f-auto').checked = false; var c0 = document.querySelector('#f-cond input[value=""]'); if (c0) c0.checked = true; $f('f-fin').checked = false; st.cat = ''; render(); });
     $f('f-open').addEventListener('click', function () { document.body.classList.add('f-show'); });
     $f('f-done').addEventListener('click', function () { document.body.classList.remove('f-show'); });
     render();
