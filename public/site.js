@@ -133,6 +133,8 @@
     if (!g || e.target.closest('.nav')) return;
     var a = g.parentNode.querySelector('a.body'); if (a) location.href = a.getAttribute('href');
   });
+  var BEN = {'אאודי':'Audi','אומודה':'Omoda','אופל':'Opel','אייווייז':'Aiways','אינפיניטי':'Infiniti','איסוזו':'Isuzu','אלפא רומיאו':'Alfa Romeo','אם.ג׳י':'MG','אסטון מרטין':'Aston Martin','אקספנג':'Xpeng','ב.מ.וו':'BMW','בי.ווי.די':'BYD','בנטלי':'Bentley','ג׳אקו':'Jaecoo','ג׳י.דבליו.אם':'GWM','ג׳יאיי':'GAC','ג׳יגואר':'Jaguar','ג׳יילי':'Geely','ג׳יפ':'Jeep','ג׳נסיס':'Genesis','דאצ׳יה':'Dacia','דודג׳':'Dodge','דונגפנג':'Dongfeng','די.אס':'DS','הונגצ׳י':'Hongqi','הונדה':'Honda','וויה':'Voyah','וולוו':'Volvo','זיקר':'Zeekr','טויוטה':'Toyota','טסלה':'Tesla','יונדאי':'Hyundai','ימאהה':'Yamaha','לאנד רובר':'Land Rover','לוטוס':'Lotus','לינק אנד קו':'Lynk & Co','ליפמוטור':'Leapmotor','לקסוס':'Lexus','מאזדה':'Mazda','מזראטי':'Maserati','מיני':'Mini','מיצובישי':'Mitsubishi','מקסוס':'Maxus','מרצדס':'Mercedes-Benz','ניסאן':'Nissan','סאנגיונג / KGM':'KGM SsangYong','סובארו':'Subaru','סוזוקי':'Suzuki','סיאט':'Seat','סיטרואן':'Citroen','סמארט':'Smart','סקודה':'Skoda','סקייוול':'Skywell','פולסטאר':'Polestar','פולקסווגן':'Volkswagen','פורד':'Ford','פורשה':'Porsche','פיאט':'Fiat','פיג׳ו':'Peugeot','צ׳אנגן':'Changan','צ׳רי':'Chery','קאדילק':'Cadillac','קופרה':'Cupra','קיה':'Kia','קרייזלר':'Chrysler','רם':'RAM','רנו':'Renault','שברולט':'Chevrolet'};
+  var allBrands = function () { var a = Object.keys(BEN); CARS.forEach(function (c) { if (c.brand && a.indexOf(c.brand) < 0) a.push(c.brand); }); return a.sort(function (x, y) { return x.localeCompare(y, 'he'); }); };
   var brands = function () { var m = {}; CARS.forEach(function (c) { if (c.brand) m[c.brand] = (m[c.brand] || 0) + 1; }); return m; };
   var rail = function (el, list) { el.innerHTML = list.map(card).join(''); wireGal(el); };
   document.querySelectorAll('[data-scroll]').forEach(function (b) {
@@ -144,9 +146,9 @@
   if (home) {
     var bm = brands();
     var sel = document.getElementById('f-brand');
-    Object.keys(bm).sort().forEach(function (b) { var o = document.createElement('option'); o.value = b; o.textContent = b + ' (' + bm[b] + ')'; sel.appendChild(o); });
+    allBrands().forEach(function (b) { var o = document.createElement('option'); o.value = b; o.textContent = b + (BEN[b] ? ' ' + BEN[b] : ''); sel.appendChild(o); });
     var sc = document.getElementById('stat-count'); if (sc) sc.textContent = CARS.length;
-    var bs0 = document.getElementById('brand-strip'); if (bs0) bs0.innerHTML = Object.keys(bm).sort().map(function (b) { return '<a href="cars.html?brand=' + encodeURIComponent(b) + '">' + esc(b) + ' <small>' + bm[b] + '</small></a>'; }).join('');
+    var bs0 = document.getElementById('brand-strip'); if (bs0) bs0.innerHTML = Object.keys(bm).sort().map(function (b) { return '<a href="cars.html?brand=' + encodeURIComponent(b) + '">' + esc(b) + (BEN[b] ? ' ' + BEN[b] : '') + '</a>'; }).join('');
     document.querySelectorAll('.cn[data-cat]').forEach(function (s) { var n = CARS.filter(function (c) { return hasCat(c, s.dataset.cat); }).length; s.textContent = n ? n + ' רכבים' : 'בקרוב'; });
     var hero = CARS.filter(function (c) { return c.price; })[0] || CARS[0];
     if (hero) {
@@ -165,7 +167,6 @@
     var qs = new URLSearchParams(location.search);
     var st = { cat: qs.get('cat') || '', brands: qs.get('brand') ? [qs.get('brand')] : [], max: +qs.get('max') || 0 };
     var bm2 = brands();
-    var BEN = {'אאודי':'Audi','אומודה':'Omoda','אופל':'Opel','אייווייז':'Aiways','אינפיניטי':'Infiniti','איסוזו':'Isuzu','אלפא רומיאו':'Alfa Romeo','אם.ג׳י':'MG','אסטון מרטין':'Aston Martin','אקספנג':'Xpeng','ב.מ.וו':'BMW','בי.ווי.די':'BYD','בנטלי':'Bentley','ג׳אקו':'Jaecoo','ג׳י.דבליו.אם':'GWM','ג׳יאיי':'GAC','ג׳יגואר':'Jaguar','ג׳יילי':'Geely','ג׳יפ':'Jeep','ג׳נסיס':'Genesis','דאצ׳יה':'Dacia','דודג׳':'Dodge','דונגפנג':'Dongfeng','די.אס':'DS','הונגצ׳י':'Hongqi','הונדה':'Honda','וויה':'Voyah','וולוו':'Volvo','זיקר':'Zeekr','טויוטה':'Toyota','טסלה':'Tesla','יונדאי':'Hyundai','ימאהה':'Yamaha','לאנד רובר':'Land Rover','לוטוס':'Lotus','לינק אנד קו':'Lynk & Co','ליפמוטור':'Leapmotor','לקסוס':'Lexus','מאזדה':'Mazda','מזראטי':'Maserati','מיני':'Mini','מיצובישי':'Mitsubishi','מקסוס':'Maxus','מרצדס':'Mercedes-Benz','ניסאן':'Nissan','סאנגיונג / KGM':'KGM SsangYong','סובארו':'Subaru','סוזוקי':'Suzuki','סיאט':'Seat','סיטרואן':'Citroen','סמארט':'Smart','סקודה':'Skoda','סקייוול':'Skywell','פולסטאר':'Polestar','פולקסווגן':'Volkswagen','פורד':'Ford','פורשה':'Porsche','פיאט':'Fiat','פיג׳ו':'Peugeot','צ׳אנגן':'Changan','צ׳רי':'Chery','קאדילק':'Cadillac','קופרה':'Cupra','קיה':'Kia','קרייזלר':'Chrysler','רם':'RAM','רנו':'Renault','שברולט':'Chevrolet'};
     var isNew = function (c) { return c.km === 0; };
     var allB = Object.keys(BEN); Object.keys(bm2).forEach(function (b) { if (allB.indexOf(b) < 0) allB.push(b); });
     $f('f-brands').innerHTML = allB.sort(function (a, b) { return a.localeCompare(b, 'he'); }).map(function (b) { return '<label><input type="checkbox" value="' + esc(b) + '"' + (st.brands.indexOf(b) > -1 ? ' checked' : '') + '> ' + esc(b) + (BEN[b] ? ' <span class="en">' + BEN[b] + '</span>' : '') + '</label>'; }).join('');
