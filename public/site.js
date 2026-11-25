@@ -166,7 +166,7 @@
     var st = { cat: qs.get('cat') || '', brands: qs.get('brand') ? [qs.get('brand')] : [], max: +qs.get('max') || 0 };
     var bm2 = brands();
     var BEN = {'אאודי':'Audi','ב.מ.וו':'BMW','דיפאל':'Deepal','הונדה':'Honda','טויוטה':'Toyota','יונדאי':'Hyundai','ימאהה':'Yamaha','מאזדה':'Mazda','ניסאן':'Nissan','סובארו':'Subaru','סוזוקי':'Suzuki','קיה':'Kia','רנו':'Renault','מרצדס':'Mercedes','פולקסווגן':'Volkswagen','סקודה':'Skoda','שברולט':'Chevrolet','פורד':'Ford','מיצובישי':'Mitsubishi','פיג׳ו':'Peugeot','סיטרואן':'Citroen','לקסוס':'Lexus','טסלה':'Tesla','BYD':'BYD','גילי':'Geely','MG':'MG','ג׳יפ':'Jeep','שבירולט':'Chevrolet'};
-    var isNew = function (c) { return /^\s*0/.test(String(c.hand || '')) || (c.km != null && c.km <= 1000); };
+    var isNew = function (c) { return c.km === 0; };
     $f('f-brands').innerHTML = Object.keys(bm2).sort().map(function (b) { return '<label><input type="checkbox" value="' + esc(b) + '"' + (st.brands.indexOf(b) > -1 ? ' checked' : '') + '> ' + esc(b) + (BEN[b] ? ' <small class="en">' + BEN[b] + '</small>' : '') + '</label>'; }).join('');
     var prices = CARS.map(function (c) { return c.price || 0; });
     var pmax = Math.ceil(Math.max.apply(null, prices.concat([20000])) / 5000) * 5000;
