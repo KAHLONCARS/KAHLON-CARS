@@ -196,6 +196,10 @@
       if (s === 'km') list.sort(function (a, b) { return (a.km || 1e9) - (b.km || 1e9); });
       grid.innerHTML = list.map(card).join(''); wireGal(grid);
       grid.hidden = !list.length; $f('cars-empty').hidden = !!list.length;
+      $f('cars-find').hidden = !list.length;
+      var want = (bs.join(' / ') + ' ' + ($f('q').value || '')).trim();
+      var msg = 'היי KAHLON CARS, אני מחפש/ת רכב' + (want ? ': ' + want : '') + '. אשמח שתעזרו לי למצוא.';
+      document.querySelectorAll('.find-wa').forEach(function (w) { w.href = 'https://wa.me/972539666010?text=' + encodeURIComponent(msg); });
       $f('r-count').innerHTML = '<b>' + list.length + '</b> רכבים' + (list.length !== CARS.length ? ' מתוך ' + CARS.length : ' במלאי');
       pills.forEach(function (p) { p.classList.toggle('on', (p.dataset.c || '') === st.cat); });
     };
