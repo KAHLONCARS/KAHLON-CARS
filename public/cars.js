@@ -4,7 +4,7 @@
    price: null מציג "מחיר בוואטסאפ". badge: תגית על התמונה. finance: true מציג מימון גם לרכב ישן יותר.
    מימון מוצג אוטומטית לרכבים חדשים יותר (ראו site.js). */
 window.KAHLON_CARS = [
-  { id: "deepal2-2026", brand: "דיפאל", cats: "family", title: "דיפאל S05 PRO", en: "Deepal S05 PRO", year: 2026, km: 20000, hand: "0 (ליסינג פרטי)", engine: "חשמלי · 272 כ״ס", gear: "אוטומט", test: "עד 02/2027", trim: "PRO",
+  { id: "deepal2-2026", brand: "צ׳אנגן", cats: "family", title: "צ׳אנגן דיפאל S05 PRO", en: "Changan Deepal S05 PRO", year: 2026, km: 20000, hand: "0 (ליסינג פרטי)", engine: "חשמלי · 272 כ״ס", gear: "אוטומט", test: "עד 02/2027", trim: "PRO",
     badge: "אחריות יצרן", price: null,
     extras: ["טווח נסיעה עד 480 ק״מ", "רמת גימור PRO, כל התוספות", "אחריות יצרן מלאה בתוקף"],
     note: "שמור ומטופח",
@@ -29,7 +29,7 @@ window.KAHLON_CARS = [
     extras: ["גלגלי מגנזיום", "פנסי לד", "וו גרירה ברישיון", "בורר מצבי נהיגה", "שליטה מלאה מההגה", "מסך מולטימדיה ענק תומך קארפליי", "מזגן עובד מצוין", "שעון אנלוגי"],
     note: "היסטוריית טיפולים מלאה בסוזוקי · התחייבות בבדיקה",
     photos: ["img/cars/vitara-2016-1.jpg", "img/cars/vitara-2016-2.jpg", "img/cars/vitara-2016-3.jpg"] },
-  { id: "deepal-2026", brand: "דיפאל", cats: "family", title: "דיפאל S05", en: "Deepal S05 PRO", year: 2026, km: 5900, hand: "0 (ליסינג פרטי)", engine: "חשמלי · 272 כ״ס", gear: "אוטומט", test: "עד 07/02/2027", trim: "PRO",
+  { id: "deepal-2026", brand: "צ׳אנגן", cats: "family", title: "צ׳אנגן דיפאל S05", en: "Changan Deepal S05 PRO", year: 2026, km: 5900, hand: "0 (ליסינג פרטי)", engine: "חשמלי · 272 כ״ס", gear: "אוטומט", test: "עד 07/02/2027", trim: "PRO",
     badge: "חשמלי מלא", price: null,
     extras: ["טווח נסיעה מוצהר עד 480 ק״מ", "מאובזרת בכל התוספות", "טרייד אין על כל סוגי הרכבים"],
     note: "5,900 ק״מ בלבד · מצב חדש",
