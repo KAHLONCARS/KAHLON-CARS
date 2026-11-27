@@ -4,6 +4,11 @@
    price: null מציג "מחיר בוואטסאפ". badge: תגית על התמונה. finance: true מציג מימון גם לרכב ישן יותר.
    מימון מוצג אוטומטית לרכבים חדשים יותר (ראו site.js). */
 window.KAHLON_CARS = [
+  { id: "verso-2011", brand: "טויוטה", cats: "family", title: "טויוטה ורסו", en: "Toyota Verso", year: 2011, km: 179000, hand: "3 פרטי", engine: "1800", gear: "אוטומט", test: "חצי שנה", trim: "GLI",
+    badge: "7 מקומות", price: 28500,
+    extras: ["7 מקומות", "מולטימדיה", "מצלמה", "4 צמיגים חדשים", "לאחר טיפול"],
+    note: "שמור ומטופל · במצב מצוין",
+    photos: ["img/cars/verso-2011-1.jpg", "img/cars/verso-2011-2.jpg", "img/cars/verso-2011-3.jpg"] },
   { id: "deepal2-2026", brand: "צ׳אנגן", cats: "family", title: "צ׳אנגן דיפאל S05 PRO", en: "Changan Deepal S05 PRO", year: 2026, km: 20000, hand: "0 (ליסינג פרטי)", engine: "חשמלי · 272 כ״ס", gear: "אוטומט", test: "עד 02/2027", trim: "PRO",
     badge: "אחריות יצרן", price: null,
     extras: ["טווח נסיעה עד 480 ק״מ", "רמת גימור PRO, כל התוספות", "אחריות יצרן מלאה בתוקף"],
