@@ -64,7 +64,7 @@ window.KAHLON_CARS = [
     extras: ["ריפודי עור לבן", "גג פנורמי כפול נפתח", "Apple CarPlay", "Virtual Cockpit", "כניסה והנעה ללא מפתח", "מצלמת רוורס + חיישני חניה", "תאורת LED מקורית", "בקרת שיוט אדפטיבית", "שמירה על נתיב", "בלימת חירום אוטונומית", "שטח מת + התרעת תנועה חוצה"],
     photos: ["img/cars/q3-2025-1.jpg", "img/cars/q3-2025-2.jpg", "img/cars/q3-2025-3.jpg"] },
   { id: "prado-2002", brand: "טויוטה", cats: "family 4x4", title: "טויוטה לנד קרוזר פראדו", en: "Toyota Land Cruiser Prado", year: 2002, km: null, engine: "3.0 דיזל · 163 כ״ס", gear: "אוטומט", test: "6 חודשים",
-    badge: "4X4", price: null,
+    badge: "4X4", price: 35000,
     extras: ["הנעה 4X4", "8 מקומות ברישיון"],
     note: "שמור ומטופל · מצב מצוין",
     photos: ["img/cars/prado-2002-1.jpg", "img/cars/prado-2002-2.jpg", "img/cars/prado-2002-3.jpg"] },
